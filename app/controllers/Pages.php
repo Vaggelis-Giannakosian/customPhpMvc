@@ -15,4 +15,12 @@ class Pages
 
     }
 
+    public function index(){
+        
+    }
+
+    public function about($id){
+        echo 'This is about '.$id;
+    }
+
 }
