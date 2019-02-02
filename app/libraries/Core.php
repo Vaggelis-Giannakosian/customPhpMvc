@@ -7,7 +7,8 @@
  *
  */
 
-class Core{
+class Core
+{
 
     protected $currentController = 'Pages';
     protected $currentMethod = 'index';
@@ -16,18 +17,32 @@ class Core{
     public function __construct()
     {
 
-//        print_r($this->getUrl());
+        // print_r($this->getUrl());
         $url = $this->getUrl();
-        
-//Look in controllers for first value
+
+        //Look in controllers for first value
+        if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+            //If exists ,set as controller
+            $this->currentController = ucwords($url[0]);
+            //unset 0 index
+            unset($url[0]);
+        }
+
+        //require the controller
+
+        require_once '../app/controllers/'.$this->currentController.'.php';
+        //Instantiate it
+
+        $this->currentController = new $this->currentController;
 
     }
 
-    public function getUrl(){
-        if(isset($_GET['url'])){
-            $url=rtrim($_GET['url'],'/');
+    public function getUrl()
+    {
+        if (isset($_GET['url'])) {
+            $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url= explode('/',$url);
+            $url = explode('/', $url);
             return $url;
         }
 
