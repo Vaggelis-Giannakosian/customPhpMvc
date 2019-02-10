@@ -11,7 +11,7 @@ class Pages extends Controller
 {
     public function __construct()
     {
-
+    $this->postModel=$this->model('Post');
 //        echo 'Pages Loaded';
 
     }
@@ -19,6 +19,7 @@ class Pages extends Controller
     public function index(){
         $data = ['title'=>'Welcome'];
         $this->view('pages/index',$data);
+
     }
 
     public function about(){
