@@ -6,17 +6,18 @@
  * Time: 12:21 μμ
  */
 
-class Pages
+class Pages extends Controller
+
 {
     public function __construct()
     {
 
-        echo 'Pages Loaded';
+//        echo 'Pages Loaded';
 
     }
 
     public function index(){
-
+        $this->view('hello');
     }
 
     public function about($id){
